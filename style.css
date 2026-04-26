@@ -561,7 +561,7 @@ button:focus-visible {
 /* ── Scroll hint ───────────────────────────────────── */
 .scroll-hint {
   position: absolute;
-  bottom: 6rem; /* sits above the stats bar */
+  bottom: 7.5rem; /* sits above the stats bar */
   left: 50%;
   transform: translateX(-50%);
   z-index: 3;
@@ -1247,6 +1247,7 @@ button:focus-visible {
   clip-path: inset(0 round var(--radius));
   border: 1.5px solid var(--border);
   box-shadow: var(--sh-md);
+  aspect-ratio: 16/10;
   /* Taller map — matches the reference screenshot */
   height: 460px;
   width: 100%;
@@ -1258,7 +1259,7 @@ button:focus-visible {
   .loc-map-wrap {
     position: sticky;
     top: calc(var(--nav-h) + 1.25rem);
-    height: 500px;
+    aspect-ratio: 4/3;
   }
 }
 
