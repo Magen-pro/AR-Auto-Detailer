@@ -561,7 +561,8 @@ button:focus-visible {
 /* ── Scroll hint ───────────────────────────────────── */
 .scroll-hint {
   position: absolute;
-  
+  bottom: 4rem; /* sits above the stats bar */
+  left: 50%;
   transform: translateX(-50%);
   z-index: 3;
   display: flex;
