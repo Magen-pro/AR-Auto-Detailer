@@ -1242,25 +1242,29 @@ button:focus-visible {
   min-width: 120px;
 }
 
-/* MAP — touch-friendly: clip-path for rounding (doesn't block touch like overflow:hidden does) */
 .loc-map-wrap {
   border-radius: var(--radius);
-  overflow: hidden;
-  /* overflow:hidden REMOVED — it blocks iframe touch events on iOS/Android.
-     clip-path provides the visual rounding without blocking touches. */
+  clip-path: inset(0 round var(--radius));
   border: 1.5px solid var(--border);
   box-shadow: var(--sh-md);
-  position: relative;
-  aspect-ratio: 4/3;
-  /* position:sticky REMOVED on mobile — creates stacking context
-     that compounds iOS iframe touch-blocking. Sticky only on desktop. */
+  /* Taller map — matches the reference screenshot */
+  height: 460px;
+  width: 100%;
   background: #e5e3df;
+  touch-action: auto;
 }
 
 @media (min-width: 1025px) {
   .loc-map-wrap {
     position: sticky;
     top: calc(var(--nav-h) + 1.25rem);
+    height: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .loc-map-wrap {
+    height: 380px;   /* good size on mobile like the screenshot */
   }
 }
 
@@ -1270,11 +1274,7 @@ button:focus-visible {
   border: none;
   display: block;
   pointer-events: auto;
-  touch-action: pan-x pan-y;
-}
-
-.loc-map-wrap * {
-  pointer-events: none;
+  touch-action: auto;
 }
 
 /* ══════════════════════════════════════════════════════
