@@ -815,16 +815,25 @@ button:focus-visible {
     display: flex;
     flex-direction: column;
     box-shadow: var(--sh-xs);
-    /* Simplified transition — no transform on mobile (avoids 60fps drops) */
-    transition:
-        box-shadow 0.25s,
-        border-color 0.25s;
+    /* Animate in when scrolled into view */
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .5s var(--ease-out),
+        transform .5s var(--ease-out),
+        box-shadow .25s,
+        border-color .25s;
+}
+
+.svc-card.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 @media (hover: hover) {
     .svc-card:hover {
         box-shadow: var(--sh-md);
         border-color: var(--border-md);
+        transform: translateY(-5px);
     }
 
     .svc-card:hover .svc-img img {
