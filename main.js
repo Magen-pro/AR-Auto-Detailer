@@ -86,6 +86,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   revealEls.forEach((el) => revealObs.observe(el));
 
+   /* ── Service cards — staggered scroll animation ── */
+    const svcCards = document.querySelectorAll('.svc-card');
+
+    const svcObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const cards = Array.from(
+                entry.target.parentElement.querySelectorAll('.svc-card')
+            );
+            const index = cards.indexOf(entry.target);
+            entry.target.style.transitionDelay = `${index * 100}ms`;
+            entry.target.classList.add('visible');
+            svcObs.unobserve(entry.target);
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    svcCards.forEach(card => svcObs.observe(card));
+
   /* ============================================================
        4. BEFORE / AFTER SLIDER
        - Works with mouse drag and touch drag
